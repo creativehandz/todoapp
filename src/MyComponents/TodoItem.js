@@ -25,13 +25,13 @@ export const TodoItem = ({ todo, onDelete }) => {
                         <h4 className="card-title">{todo.title}</h4>
                         <p className="card-text">{todo.desc}</p>
                         <div className="d-flex justify-content-start">
-                        {!timerOn && time == 0 &&(
+                        {!timerOn && time === 0 &&(
                             <button className="btn btn-sm btn-success" onClick={() => setTimeOn(true)} >Start</button>
                           )}
                           {timerOn &&(
                             <button className="btn btn-sm btn-success" onClick={() => setTimeOn(false)} >End</button>
                           )}
-                          {!timerOn && time != 0 &&(
+                          {!timerOn && time !== 0 &&(
                             <button className="btn btn-sm btn-success" onClick={() => setTimeOn()} >Complete</button>
                           )}
                           
