@@ -39,7 +39,7 @@ export const TodoItem = ({ todo, onDelete }) => {
                           <div className="timer px-2">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:{("0" + ((time / 10 ) % 10)).slice(-2)}</div>
                           
                         
-                        <button className="btn btn-sm btn-danger ms-auto" onClick={() => { onDelete(todo) }}>Delete</button>
+                        <button className="btn btn-sm btn-danger ms-auto" onClick={() => { onDelete(todo) }}>Delete</button> 
                         </div>
                         
                     </div>
