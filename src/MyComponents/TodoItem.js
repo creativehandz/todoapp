@@ -1,6 +1,21 @@
 import React from 'react'
 
 export const TodoItem = ({ todo, onDelete }) => {
+    const [time, setTime] = React.useState(0);
+    const [timerOn, setTimeOn] = React.useState(false);
+     React.useEffect(()=>{
+
+      let interval = null;
+      if(timerOn){
+          interval =setInterval(() => {
+              setTime(prevTime => prevTime + 10)
+          },10)
+
+      }else{
+          clearInterval(interval)
+      }
+      return() => clearInterval(interval)
+  },[timerOn])
     return (
         <>
 
@@ -10,8 +25,19 @@ export const TodoItem = ({ todo, onDelete }) => {
                         <h4 className="card-title">{todo.title}</h4>
                         <p className="card-text">{todo.desc}</p>
                         <div className="d-flex justify-content-start">
-                        <button className="btn btn-sm btn-success" >Start</button>
-                        <div className="timer px-2">0:22</div>
+                        {!timerOn && time == 0 &&(
+                            <button className="btn btn-sm btn-success" onClick={() => setTimeOn(true)} >Start</button>
+                          )}
+                          {timerOn &&(
+                            <button className="btn btn-sm btn-success" onClick={() => setTimeOn(false)} >End</button>
+                          )}
+                          {!timerOn && time != 0 &&(
+                            <button className="btn btn-sm btn-success" onClick={() => setTimeOn()} >Complete</button>
+                          )}
+                          
+
+                          <div className="timer px-2">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:{("0" + ((time / 10 ) % 10)).slice(-2)}</div>
+                          
                         
                         <button className="btn btn-sm btn-danger ms-auto" onClick={() => { onDelete(todo) }}>Delete</button>
                         </div>
